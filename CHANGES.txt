@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-1.0.0 (unreleased)
+1.0.0 (2013-02-26)
 ------------------
 
 - Moved depndencies for the special SampleDataLayer setup to the "testing"
