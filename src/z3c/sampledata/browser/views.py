@@ -1,12 +1,27 @@
+###############################################################################
+#
+# Copyright 2006 by Zope Foundation and Contributors
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+###############################################################################
+"""Sample Data Views.
+"""
+import zope.browserpage.namedtemplate
 from z3c.sampledata import _
 from z3c.sampledata.interfaces import ISampleManager
 from zope import component
 from zope import interface
 from zope import schema
-from zope.app.pagetemplate import ViewPageTemplateFile
+from zope.browserpage import ViewPageTemplateFile
 from zope.traversing.browser import absoluteURL
 import zope.formlib.form
-import zope.app.pagetemplate.namedtemplate
 import zope.formlib.interfaces
 
 
@@ -100,7 +115,7 @@ class Generator(zope.formlib.form.AddForm):
     """An editor for a single generator"""
     interface.implements(zope.formlib.interfaces.ISubPageForm)
 
-    template = zope.app.pagetemplate.namedtemplate.NamedTemplate('default')
+    template = zope.browserpage.namedtemplate.NamedTemplate('default')
 
     actions = []
 

@@ -12,11 +12,7 @@
 #
 ##############################################################################
 """Tests for the package
-
-$Id$
 """
-__docformat__ = "reStructuredText"
-
 import doctest
 import unittest
 from zope.app.testing.setup import placefulSetUp, placefulTearDown

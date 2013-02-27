@@ -11,10 +11,8 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ###############################################################################
+"""Interfaces
 """
-$Id: $
-"""
-
 import zope.interface
 import zope.schema
 
@@ -52,7 +50,7 @@ class ISampleDataPlugin(zope.interface.Interface):
 
 class ISampleManager(zope.interface.Interface):
     """A sample manager manages the generation of sample data.
-    
+
     The manager uses a list of sample generators.
     """
 

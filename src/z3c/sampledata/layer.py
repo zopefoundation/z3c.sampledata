@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006 Lovely Systems and Contributors.
+# Copyright (c) 2006 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -21,11 +21,7 @@ WARNING :
 
 TODO:
     Write tests
-
-$Id: $
 """
-__docformat__ = "reStructuredText"
-
 import os
 import transaction
 

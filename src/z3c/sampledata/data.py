@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006 Lovely Systems and Contributors.
+# Copyright (c) 2006 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -12,16 +12,10 @@
 #
 ##############################################################################
 """Sample data for the media site
-
-
-$Id: $
 """
-__docformat__ = "reStructuredText"
-
 import os
 import random
 import csv
-
 
 class DataGenerator(object):
     """Base functionality for data generators."""
