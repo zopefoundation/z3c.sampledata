@@ -17,7 +17,7 @@ import zope.event
 import zope.interface
 import zope.lifecycleevent
 import zope.schema
-from zope.interface import implements
+from zope.interface import implementer
 from zope.site import hooks
 from zope.site.folder import Folder
 from zope.site.site import LocalSiteManager
@@ -35,9 +35,8 @@ class ISampleSiteParameters(zope.interface.Interface):
             )
 
 
+@implementer(ISampleDataPlugin)
 class SampleSite(object):
-
-    implements(ISampleDataPlugin)
 
     dependencies = []
     schema = ISampleSiteParameters

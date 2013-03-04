@@ -35,28 +35,28 @@ A generator generates sample data.
   >>> from zope import component
   >>> from z3c.sampledata.interfaces import ISampleDataPlugin
 
-  >>> class GeneratePrincipals(object):
-  ...     interface.implements(ISampleDataPlugin)
+  >>> @interface.implementer(ISampleDataPlugin)
+  ... class GeneratePrincipals(object):
   ...     dependencies = []
   ...     schema = None
   ...     def generate(self, context, param={}, dataSource=None, seed=None):
-  ...         print self.__class__.__name__
+  ...         print(self.__class__.__name__)
   ...         if dataSource is not None:
   ...             for data in dataSource:
-  ...                 print '- %s'%data['login']
+  ...                 print('- %s'%data['login'])
   >>> principalPlugin = GeneratePrincipals()
 
 For our tests we provide another generator :
 
-  >>> class GenerateSite(object):
-  ...     interface.implements(ISampleDataPlugin)
+  >>> @interface.implementer(ISampleDataPlugin)
+  ... class GenerateSite(object):
   ...     dependencies = []
   ...     schema = None
   ...     def generate(self, context, param={}, dataSource=None, seed=None):
   ...         if 'sitename' in param:
-  ...             print 'This is site %r'%param['sitename']
+  ...             print('This is site %r'%param['sitename'])
   ...         else:
-  ...             print self.__class__.__name__
+  ...             print(self.__class__.__name__)
   ...         return 'I am from the site'
   >>> sitePlugin = GenerateSite()
 
@@ -103,7 +103,7 @@ manager.
 
 A manager provides it's generators.
 
-  >>> manager.generators.keys()
+  >>> list(manager.generators.keys())
   ['z3c.sampledata.principals']
 
 We can tell the manager to generate all samples.
@@ -165,8 +165,8 @@ Cycles in the generator definition
 
 A test for a complex dependency.
 
-  >>> class Generator(object):
-  ...     interface.implements(ISampleDataPlugin)
+  >>> @interface.implementer(ISampleDataPlugin)
+  ... class Generator(object):
   ...     name = 'generator'
   ...     dependencies = []
   ...     schema = None

@@ -14,8 +14,7 @@
 """
 """
 import zope.i18nmessageid
-
 _ = zope.i18nmessageid.MessageFactory('sampledata')
 
-from manager import Manager
+from z3c.sampledata.manager import Manager
 

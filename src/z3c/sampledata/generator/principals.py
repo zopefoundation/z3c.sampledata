@@ -18,13 +18,13 @@ import zope.component
 import zope.event
 import zope.schema
 import zope.lifecycleevent
-from zope.interface import implements
-from zope.app.authentication import principalfolder
+from zope.interface import implementer
+from zope.pluggableauth.plugins import principalfolder
 from zope.site import hooks
 
-from z3c.sampledata.interfaces import ISampleDataPlugin
-
 from z3c.sampledata import _
+from z3c.sampledata._compat import toUnicode
+from z3c.sampledata.interfaces import ISampleDataPlugin
 
 
 class IPrincipalDataSource(zope.interface.Interface):
@@ -77,14 +77,13 @@ class ISamplePrincipalParameters(zope.interface.Interface):
             )
 
 
+@implementer(ISampleDataPlugin)
 class SamplePrincipals(object):
     """Create principals inside a site manager.
 
     context : site
     return  : pau in which the principals where created
     """
-
-    implements(ISampleDataPlugin)
 
     dependencies = []
     schema = ISamplePrincipalParameters
@@ -115,7 +114,7 @@ class SamplePrincipals(object):
                 if (    self.maxPrincipals is not None
                     and numCreated>=self.maxPrincipals):
                     break
-                login = unicode(info[0])
+                login = toUnicode(info[0])
                 if login in self.logins:
                     # ignore duplicate principals
                     continue
@@ -140,12 +139,12 @@ class SamplePrincipals(object):
 
 
     def _createPrincipal(self, site, info):
-        login = unicode(info[0])
+        login = toUnicode(info[0])
         self.logins.append(login)
         if login in self.pau['members']:
             return
-        name = unicode(info[1])
-        password = unicode(info[2])
+        name = toUnicode(info[1])
+        password = toUnicode(info[2])
         principal = principalfolder.InternalPrincipal(
                             login,
                             password,

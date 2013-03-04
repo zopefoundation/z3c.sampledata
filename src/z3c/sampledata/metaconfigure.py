@@ -1,7 +1,22 @@
+###############################################################################
+#
+# Copyright 2006 by Zope Foundation and Contributors
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+###############################################################################
+"""ZCML Directives
+"""
 from zope.component.zcml import utility
 
-from manager import Manager
-from interfaces import ISampleManager
+from z3c.sampledata.manager import Manager
+from z3c.sampledata.interfaces import ISampleManager
 
 
 class sampleManager(object):

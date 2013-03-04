@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Setup
-
-$Id:$
 """
 import os
 from setuptools import setup, find_packages
@@ -23,7 +21,7 @@ def read(*rnames):
 
 setup (
     name='z3c.sampledata',
-    version='1.0.1.dev0',
+    version='2.0.0a1.dev0',
     author = "Stephan Richter and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "Sampledata Generator",
@@ -61,18 +59,11 @@ setup (
     package_dir = {'':'src'},
     namespace_packages = ['z3c'],
     extras_require = dict(
-        browser = [
-            'zope.browserpage',
-            'zope.traversing',
-            ],
         testing = [
-            'ZODB3',
+            'ZODB',
             ],
         test = [
-            'zope.app.testing',
-            'zope.app.zcmlfiles',
-            'zope.untrustedpython',
-            'zope.viewlet',
+            'zope.testing',
             ],
         ),
     install_requires = [
@@ -87,5 +78,7 @@ setup (
         'zope.schema',
         'zope.site',
         ],
+    tests_require=['zope.testing'],
+    test_suite='z3c.sampledata.tests.test_suite',
     zip_safe = False,
 )

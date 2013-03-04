@@ -1,7 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
   <include package=".generator" />
-  <include package=".browser" />
 
 </configure>
 

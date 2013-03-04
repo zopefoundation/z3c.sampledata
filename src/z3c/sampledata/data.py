@@ -16,6 +16,7 @@
 import os
 import random
 import csv
+from z3c.sampledata._compat import toUnicode
 
 class DataGenerator(object):
     """Base functionality for data generators."""
@@ -34,8 +35,9 @@ class DataGenerator(object):
         Returned lines are stripped.
         """
         fullpath = os.path.join(self.path, filename)
-        lines = file(fullpath).readlines()
-        return [unicode(line.strip()) for line in lines]
+        with open(fullpath) as file:
+            lines = file.readlines()
+        return [toUnicode(line.strip()) for line in lines]
 
     def readCSV(self, filename, delimiter=','):
         """Read in lines from file. Filename is relative to the module.
@@ -43,9 +45,8 @@ class DataGenerator(object):
         Returned lines are stripped.
         """
         fullpath = os.path.join(self.path, filename)
-        f = file(fullpath)
-        reader = csv.reader(f, delimiter=delimiter)
-        return list(reader)
+        with open(fullpath) as file:
+            return list(csv.reader(file, delimiter=delimiter))
 
     def files(self, path):
         """Get a list of files from a path.

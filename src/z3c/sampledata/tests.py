@@ -14,44 +14,55 @@
 """Tests for the package
 """
 import doctest
+import re
 import unittest
-from zope.app.testing.setup import placefulSetUp, placefulTearDown
+from zope.site.testing import siteSetUp, siteTearDown
+from zope.password.testing import setUpPasswordManagers
+from zope.testing import renormalizing
 
+checker = renormalizing.RENormalizing([
+    # Python 3 unicode removed the "u".
+    (re.compile("u('.*?')"),
+     r"\1"),
+    (re.compile('u(".*?")'),
+     r"\1"),
+    ])
 
 def setUp(test):
-    root = placefulSetUp(site=True)
-    test.globs['root'] = root
-
+    test.globs['root'] = siteSetUp(site=True)
+    setUpPasswordManagers()
 
 def tearDown(test):
-    placefulTearDown()
+    siteTearDown()
 
 
 def test_suite():
-
+    flags = doctest.NORMALIZE_WHITESPACE|\
+            doctest.ELLIPSIS|\
+            doctest.IGNORE_EXCEPTION_DETAIL
     return unittest.TestSuite((
         doctest.DocFileSuite(
                 'README.txt',
-                optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+                optionflags=flags, checker=checker,
                 ),
         doctest.DocFileSuite(
                 'generator/site.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+                optionflags=flags, checker=checker,
                 ),
         doctest.DocFileSuite(
                 'generator/intids.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+                optionflags=flags, checker=checker,
                 ),
         doctest.DocFileSuite(
                 'generator/pau.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+                optionflags=flags, checker=checker,
                 ),
         doctest.DocFileSuite(
                 'generator/principals.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+                optionflags=flags, checker=checker,
                 ),
             ))

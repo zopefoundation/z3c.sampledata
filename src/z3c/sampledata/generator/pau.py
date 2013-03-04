@@ -15,19 +15,18 @@
 """
 import zope.event
 import zope.lifecycleevent
-from zope.interface import implements
+from zope.interface import implementer
 
 from zope.pluggableauth import PluggableAuthentication
 from zope.authentication.interfaces import IAuthentication
 from zope.pluggableauth.interfaces import IAuthenticatorPlugin
-from zope.app.authentication.principalfolder import PrincipalFolder
+from zope.pluggableauth.plugins.principalfolder import PrincipalFolder
 
 from z3c.sampledata.interfaces import ISampleDataPlugin
 
 
+@implementer(ISampleDataPlugin)
 class SamplePau(object):
-
-    implements(ISampleDataPlugin)
 
     dependencies = []
     schema = None

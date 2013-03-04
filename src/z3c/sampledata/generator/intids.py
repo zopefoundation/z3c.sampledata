@@ -15,15 +15,14 @@
 """
 import zope.event
 import zope.lifecycleevent
-from zope.interface import implements
+from zope.interface import implementer
 from zope.intid import IntIds
 from zope.intid.interfaces import IIntIds
 
 from z3c.sampledata.interfaces import ISampleDataPlugin
 
+@implementer(ISampleDataPlugin)
 class SampleIntIds(object):
-
-    implements(ISampleDataPlugin)
 
     dependencies = []
     schema = None

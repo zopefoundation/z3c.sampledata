@@ -14,16 +14,15 @@
 """A manager for sample generation.
 """
 import time
-
 from zope import interface
 from zope import component
 
-from interfaces import ISampleDataPlugin, ISampleManager
-from interfaces import CyclicDependencyError
+from z3c.sampledata.interfaces import ISampleDataPlugin, ISampleManager
+from z3c.sampledata.interfaces import CyclicDependencyError
 
 
+@interface.implementer(ISampleManager)
 class Manager(object):
-    interface.implements(ISampleManager)
 
     def __init__(self, name, seed):
         self.name = name
